@@ -1,47 +1,46 @@
-# 树木编辑器
-## 本周学习任务
-本周开始TreeEditor 项目，做一个树木的编辑器，计划完成对主枝干的编辑。
+# TreeEditor
+## Learning mission
+Start the TreeEditor project this week, make a tree editor, and plan to finish editing the main branches.
 
-## 主枝干属性编辑
-已经完成对单个树木主要枝干的编辑，包括主枝干的高度、粗细、位置等。
+## Edit the main branch attribute
+The editing of the main branches of individual trees has been completed, including the height, thickness, position, etc. of the main branches.
 
-最左侧一栏为主枝干的编辑框，包括：
+The leftmost column is the edit box for the main branch, including:
 
-Background:场景的背景颜色。
+Background:The background color of the scene.
 
-Segmentation:每个形成主枝干的圆环序列生成枝干时的分段数，通过控制分段数可以调节模型的精细程度，不同精细度的模型可以用于层次细节。暂定取值范围为 0~30。建议取值高于 20，这样的树木模型更加精细。
+Segmentation:The number of segments when each ring sequence forming the main branches generates branches, the degree of fineness of the model can be adjusted by controlling the number of segments, and models with different fineness can be used for hierarchical details. The tentative value range is 0~30. The recommended value is higher than 20, and the tree model is more elaborate.
 
-Number of circles:圆弧序列的圆环数。该值主要决定了枝干的高度，暂定取值范围为 0~30。
+Number of circles:The number of rings in the arc sequence. This value mainly determines the height of the branches, and the tentative value ranges from 0 to 30.
 
-Radiusof tree:圆环序列的半径大小。该值影响枝干的粗细，暂定取值范围为 1~5。
+Radiusof tree:The radius of the ring sequence. This value affects the thickness of the branches, and the tentative value ranges from 1 to 5.
 
-Rebuild：重塑枝干，通过更改上述几个属性后，点击 rebuild 可获得相应更改后的枝干。
+Rebuild：Reshape the branches. After changing the above properties, click rebuild to get the corresponding changed branches.
 
-Show branch：勾选时显示树木模型，不勾选时只树木对应显示圆环序列。
+Show branch：When the check box is selected, the tree model is displayed. When it is not checked, the ring sequence corresponding to the tree is displayed.
 
-Show wireframe：勾选时显示树木模型的轮廓但不包括树皮，可以方便直接观察到圆环序列。
+Show wireframe：When the check box is selected, the outline of the tree model but does not include the bark is displayed, it is convenient to directly observe the ring sequence.
 
-Position：模型在场景中的位置。
+Position：The location of the model in the scene.
 
-另外还有一栏编辑框，用于对树木的其他枝干进行编辑。
+There is also a column edit box for editing other branches of the tree.
 
-## 圆环序列位置编辑
-在对主枝干完成大小、粗细等编辑后，可以对主枝干的形状进行编辑，主要方法是通过对圆环序列在场景中的位置进行修改。该方法在勾选 show wireframe 的时比较方便，双击场景中的某个圆环，可以随意移动该圆环，随后点击编辑框内的 rebuild，可以获得修改后的树木形状。可以一次移动多个圆环。但圆环序列的圆环是按照顺序组成树木模型枝干的，不可以把某个位置的圆环放在高于其上一层圆环的位置或下一层圆环的位置，否则会失真。具体步骤为：
-* 勾选 show wireframe 便于观察枝干的圆形序列位置。
-* 点击其中一个圆环进行移动。
-* 点击编辑框内的 rebuild 可获得新形状的枝干。
+## Edit ring sequence position
+After the main branches are edited in size, thickness, etc., the shape of the main branches can be edited. The main method is to modify the position of the ring sequence in the scene. This method is convenient when checking the 'show wireframe'. Double-click a ring in the scene to move the ring at random, and then click rebuild in the edit box to get the modified tree shape. You can move multiple rings at once. However, the ring of the ring sequence is composed of branches of the tree model in order. It is not allowed to place the ring at a certain position above the position of the upper ring or the position of the ring below, otherwise it will be distorted. . The specific steps are：
+* Check the 'show wireframe' to see the circular sequence position of the branches.
+* Click on one of the rings to move.
+* Click rebuild in the edit box to get the branch of the new shape.
 
-## 存在的问题
+## Problems
 
->目前对一棵树木的主枝干的编辑功能已经完成，问题存在于如何对主枝干上的子枝干进行添加和编辑。我有两个方案但各有优缺点，目前还在思考选择哪一个或怎样修改：
->>在上方的编辑框中修改枝干的属性后点击 addbranch 向场景中添加一个子枝干，随后手动拖拽该子枝干到树木的指定位置。该方法可编辑的自由度比较高，可以将生成子的枝干拖拽到任何位置，但最后的树木模型真实度很低，存在裂缝，拖拽拼接后的枝干之间可能存在很大的空隙，该方法由于真实度太低，我不太倾向于该方法。
+>At present, the editing function of the main branch of a tree has been completed. The problem lies in how to add and edit the child branches on the main branch. I have two options but each has its own advantages and disadvantages. I am still thinking about which one to choose or how to modify it.：
+>>In the edit box above, modify the properties of the branches and click 'addbranch' to add a sub-branch to the scene, then manually drag the sub-branch to the specified position of the tree. The editable degree of freedom of this method is relatively high, and the branches of the generator can be dragged to any position, but the final tree model has low realism and cracks, and there may be a large gap between the branches after dragging and splicing. This method is less inclined because the realism is too low.
 
->>第二个方法是先点击 addbranch 向场景中添加一个子枝干，该子枝干随机生成在主枝干的某一位置，之后可以对子枝干进行编辑，包括形状、大小等编辑。该方法解决了上一个方法中添加子枝干时出现空隙的问题，但缺点是，子枝干的位置在随机生成中被固定，没办法再编辑中对其进行修改，树木可编辑的自由度反而降低。
+>>The second method is to add a sub-branch to the scene by clicking 'addbranch'. The sub-branch is randomly generated at a certain position of the main branch, and then the sub-branch can be edited, including editing of shape and size. The method solves the problem of the occurrence of gaps when the sub-branch is added in the previous method, but the disadvantage is that the position of the sub-branch is fixed in the random generation, and there is no way to modify it in the edit, so the editable degree of freedom of the tree decreases.
 
-该问题解决后，该项目基本完成大部分，现在主要受困于该问题，还未想出对策。
 
-## 个人小结
+## Summary
 
-本周遇到的主要问题就是如何添加子枝干的问题。但在项目中还存在一个顺序问题，对主枝干的编辑要先调节高度和粗细，确定好后可以对圆环序列进行编辑修改枝干的形状，但在对圆环序列进行编辑时或编辑后无法修改主枝干的高度和粗细，否则获得的树木与原来不一致。
+The main problem encountered this week was how to add sub-branches. However, there is still a sequence problem in the project. The editing of the main branches should first adjust the height and thickness. After the determination, the ring sequence can be edited to modify the shape of the branches. After that, the height and thickness of the main branches cannot be modified, otherwise the trees obtained are inconsistent with the original.
 
-项目中主枝干的圆环序列信息保存在 cs 中，每次在编辑框内的修改都记录保存在该变量中，之后 rebuild 根据 cs 重建树木。
+The ring sequence information of the main branches in the project is saved in cs, and each time the modification in the edit box is recorded in the variable, then rebuild rebuilds the tree according to cs.
